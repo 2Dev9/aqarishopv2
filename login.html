@@ -45,14 +45,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: var(--container-padding);
+            padding: clamp(0.5rem, 2vw, 1rem);
+            padding-top: clamp(1rem, 4vh, 2rem);
             transition: all 0.3s ease;
             /* Better mobile support */
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            /* Enhanced responsive design for all devices */
-            /* Better fluid scaling and mobile-first approach */
-            padding: clamp(0.5rem, 2vw, 1rem);
         }
 
         [data-theme="dark"] body {
@@ -262,47 +260,6 @@
         }
 
         /* Comprehensive mobile responsive design */
-        @media (max-width: 768px) {
-            body {
-                padding: 0.5rem;
-            }
-            
-            .login-container {
-                padding: 1.5rem;
-                margin: 0.5rem;
-                border-radius: 15px;
-            }
-            
-            .back-home, .theme-toggle {
-                position: static;
-                margin-bottom: 1rem;
-            }
-
-            .theme-toggle {
-                float: left;
-                margin-left: 1rem;
-            }
-
-            .back-home {
-                float: right;
-            }
-
-            .logo {
-                clear: both;
-                margin-top: 1rem;
-            }
-
-            .links {
-                margin-top: 1.5rem;
-            }
-
-            .links a {
-                display: block;
-                margin: 0.5rem 0;
-            }
-        }
-
-        /* Small mobile devices */
         @media (max-width: 480px) {
             .login-container {
                 padding: 1rem;
@@ -360,6 +317,26 @@
         @media (min-width: 1400px) {
             .login-container {
                 max-width: 600px;
+            }
+        }
+
+        /* Enhanced mobile responsive design for better accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .form-group input,
+            .form-group select,
+            .btn {
+                border-width: 3px;
             }
         }
 
