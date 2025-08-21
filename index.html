@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عقاري شوب - موقع العقارات الأول</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="logo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Updated color scheme to use only blue variations */
+        :root {
+            --primary-blue: #1e40af;
+            --secondary-blue: #3b82f6;
+            --light-blue: #dbeafe;
+            --dark-blue: #1e3a8a;
+            --accent-blue: #60a5fa;
+            --glass-bg: rgba(59, 130, 246, 0.1);
+            --glass-border: rgba(59, 130, 246, 0.2);
+            --glass-shadow: 0 8px 32px 0 rgba(30, 64, 175, 0.37);
+            --text-color: #1e3a8a;
+            --bg-gradient: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+        }
+
+        [data-theme="dark"] {
+            --primary-blue: #60a5fa;
+            --secondary-blue: #93c5fd;
+            --light-blue: #1e3a8a;
+            --dark-blue: #0f172a;
+            --accent-blue: #bfdbfe;
+            --glass-bg: rgba(30, 58, 138, 0.2);
+            --glass-border: rgba(96, 165, 250, 0.2);
+            --glass-shadow: 0 8px 32px 0 rgba(30, 64, 175, 0.5);
+            --text-color: #bfdbfe;
+            --bg-gradient: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+        }
+
+        [data-theme="dark"] body {
+            background: var(--bg-gradient);
+            color: var(--text-color);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            transition: all 0.3s ease;
+        }
+
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+        }
+
+        /* Simplified header with cleaner blue styling */
+        .header {
+            background: rgba(30, 64, 175, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(96, 165, 250, 0.3);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .header {
+            background: rgba(30, 58, 138, 0.9);
+            border-bottom: 1px solid rgba(191, 219, 254, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .logo-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            /* box-shadow: 0 0 5px #dbeafe; */
+            /* border: 2px solid rgba(255, 255, 255, 0.3); */
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .nav-menu a:hover {
+            background: var(--accent-blue);
+            color: var(--dark-blue);
+            transform: translateY(-2px);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .theme-toggle {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            background: var(--accent-blue);
+            color: var(--dark-blue);
+            transform: scale(1.1);
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-primary {
+            background: var(--primary-blue);
+            color: white;
+            border: 1px solid var(--accent-blue);
+        }
+
+        .btn-secondary {
+            background: var(--secondary-blue);
+            color: white;
+            border: 1px solid var(--accent-blue);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(30, 64, 175, 0.4);
+            background: var(--accent-blue);
+            color: var(--dark-blue);
+        }
+
+        /* Simplified hero section with blue gradient */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue)), url('/placeholder.svg?height=600&width=1200') center/cover;
+            color: white;
+            text-align: center;
+            padding: 8rem 2rem 6rem;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .hero {
+            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue)), url('/placeholder.svg?height=600&width=1200') center/cover;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-60px); }
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(30, 64, 175, 0.5);
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 2;
+            opacity: 0.95;
+        }
+
+        /* Simplified search bar with blue theme */
+        .search-container {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .search-bar {
+            display: flex;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: var(--glass-shadow);
+            margin-bottom: 1rem;
+        }
+
+        .search-filters {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            font-size: 0.9rem;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--accent-blue);
+            color: var(--dark-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 1.2rem 1.5rem;
+            border: none;
+            font-size: 1rem;
+            background: transparent;
+            color: white;
+            outline: none;
+        }
+
+        .search-bar input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .search-bar button {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 1.2rem 2rem;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .search-bar button:hover {
+            background: var(--accent-blue);
+            color: var(--dark-blue);
+            transform: scale(1.05);
+        }
+
+        /* Simplified categories section */
+        .categories {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(30, 64, 175, 0.5);
+        }
+
+        [data-theme="dark"] .section-title {
+            color: var(--text-color);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .category-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: var(--glass-shadow);
+            transition: all 0.3s;
+            cursor: pointer;
+            color: white;
+        }
+
+        [data-theme="dark"] .category-card {
+            color: var(--text-color);
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(30, 64, 175, 0.4);
+            background: var(--accent-blue);
+            color: var(--dark-blue);
+        }
+
+        .category-card i {
+            font-size: 2.5rem;
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 10px rgba(96, 165, 250, 0.5));
+        }
+
+        .category-card:hover i {
+            color: var(--dark-blue);
+        }
+
+        .category-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        [data-theme="dark"] .category-card h3 {
+            color: var(--text-color);
+        }
+
+        .category-card:hover h3 {
+            color: var(--dark-blue);
+        }
+
+        /* Simplified properties section */
+        .properties {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 4rem 2rem;
+        }
+
+        .properties-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .property-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: var(--glass-shadow);
+            transition: all 0.3s;
+            margin-bottom: 2rem;
+        }
+
+        .property-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(30, 64, 175, 0.4);
+        }
+
+        .property-image {
+            height: 200px;
+            background: url('/placeholder.svg?height=200&width=300') center/cover;
+            position: relative;
+        }
+
+        .property-price {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--primary-blue);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: bold;
+            border: 1px solid var(--accent-blue);
+        }
+
+        .property-info {
+            padding: 1.5rem;
+            color: white;
+        }
+
+        [data-theme="dark"] .property-info {
+            color: var(--text-color);
+        }
+
+        .property-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        [data-theme="dark"] .property-info h3 {
+            color: var(--text-color);
+        }
+
+        .property-details {
+            display: flex;
+            justify-content: space-between;
+            margin: 1rem 0;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        [data-theme="dark"] .property-details {
+            color: rgba(191, 219, 254, 0.8);
+        }
+
+        /* Simplified services section */
+        .services {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--glass-shadow);
+            text-align: center;
+            transition: all 0.3s;
+            color: white;
+        }
+
+        [data-theme="dark"] .service-card {
+            color: var(--text-color);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            background: var(--accent-blue);
+            color: var(--dark-blue);
+        }
+
+        .service-card i {
+            font-size: 2.2rem;
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 10px rgba(96, 165, 250, 0.5));
+        }
+
+        .service-card:hover i {
+            color: var(--dark-blue);
+        }
+
+        /* Simplified AI section */
+        .ai-section {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            backdrop-filter: blur(20px);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        [data-theme="dark"] .ai-section {
+            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
+        }
+
+        .ai-features {
+            max-width: 800px;
+            margin: 2rem auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .ai-feature {
+            padding: 1.5rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            transition: all 0.3s;
+        }
+
+        .ai-feature:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Simplified footer */
+        .footer {
+            background: var(--primary-blue);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--glass-border);
+            color: white;
+            padding: 3rem 2rem 1rem;
+            text-align: center;
+        }
+
+        [data-theme="dark"] .footer {
+            background: var(--dark-blue);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-blue);
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-blue);
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(96, 165, 250, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary-blue);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--primary-blue));
+            z-index: 9999;
+            transition: width 0.3s ease;
+        }
+
+        /* Enhanced modal styles with better dark mode support */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: var(--glass-shadow);
+        }
+
+        [data-theme="dark"] .modal-content {
+            background: rgba(30, 58, 138, 0.95);
+            color: var(--text-color);
+        }
+
+        .close {
+            color: #aaa;
+            float: left;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: var(--primary-blue);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dark-blue);
+        }
+
+        [data-theme="dark"] .form-group label {
+            color: var(--text-color);
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--glass-border);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            transition: border-color 0.3s;
+        }
+
+        [data-theme="dark"] .form-group input, 
+        [data-theme="dark"] .form-group select {
+            background: rgba(30, 58, 138, 0.9);
+            color: var(--text-color);
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+        }
+
+        /* Added property detail modal styles */
+        .property-detail-modal .modal-content {
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .property-detail-header {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .property-detail-image {
+            width: 300px;
+            height: 200px;
+            border-radius: 15px;
+            background: url('/placeholder.svg?height=200&width=300') center/cover;
+        }
+
+        .property-detail-info h2 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .property-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .feature-item {
+            background: var(--glass-bg);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid var(--glass-border);
+        }
+
+        /* Simplified responsive design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .search-bar {
+                flex-direction: column;
+                border-radius: 20px;
+            }
+            
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .category-card {
+                padding: 1.5rem;
+            }
+
+            .property-detail-header {
+                flex-direction: column;
+            }
+
+            .property-detail-image {
+                width: 100%;
+            }
+
+            .search-filters {
+                gap: 0.5rem;
+            }
+
+            .filter-btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.85rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Enhanced responsive design for all devices */
+        /* Mobile-first approach with better fluid scaling */
+        .nav-container {
+            padding: 0 clamp(1rem, 4vw, 2rem);
+        }
+
+        .logo {
+            font-size: clamp(1.2rem, 4vw, 2rem);
+        }
+
+        .logo-image {
+            width: clamp(40px, 8vw, 60px);
+            height: clamp(40px, 8vw, 60px);
+        }
+
+        .hero {
+            padding: clamp(6rem, 15vh, 8rem) clamp(1rem, 4vw, 2rem) clamp(4rem, 10vh, 6rem);
+        }
+
+        .hero h1 {
+            font-size: clamp(1.8rem, 6vw, 3rem);
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 3vw, 1.2rem);
+        }
+
+        .section-title {
+            font-size: clamp(1.5rem, 5vw, 2.2rem);
+        }
+
+        .categories, .properties {
+            padding: clamp(2rem, 8vh, 4rem) clamp(1rem, 4vw, 2rem);
+        }
+
+        /* Better grid responsiveness */
+        .categories-grid {
+            grid-template-columns: repeat(auto-fit, minmax(clamp(150px, 25vw, 200px), 1fr));
+            gap: clamp(1rem, 3vw, 1.5rem);
+        }
+
+        .category-card {
+            padding: clamp(1rem, 4vw, 2rem);
+        }
+
+        .category-card i {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+        }
+
+        /* Enhanced search bar responsiveness */
+        .search-container {
+            max-width: clamp(300px, 90vw, 700px);
+        }
+
+        .search-bar input {
+            padding: clamp(0.8rem, 3vw, 1.2rem) clamp(1rem, 4vw, 1.5rem);
+            font-size: clamp(0.9rem, 3vw, 1rem);
+        }
+
+        .search-bar button {
+            padding: clamp(0.8rem, 3vw, 1.2rem) clamp(1rem, 4vw, 2rem);
+            font-size: clamp(0.9rem, 3vw, 1rem);
+        }
+
+        .filter-btn {
+            padding: clamp(0.4rem, 2vw, 0.5rem) clamp(0.8rem, 3vw, 1rem);
+            font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+        }
+
+        /* Better touch targets for mobile */
+        .nav-menu a,
+        .btn,
+        .theme-toggle,
+        .filter-btn {
+            min-height: 44px;
+            min-width: 44px;
+        }
+
+        /* Improved mobile navigation */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .auth-buttons {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                margin-top: 1rem;
+            }
+
+            .search-bar {
+                flex-direction: column;
+                border-radius: 15px;
+            }
+
+            .search-filters {
+                justify-content: center;
+                gap: clamp(0.3rem, 2vw, 0.5rem);
+            }
+
+            .categories-grid {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            }
+        }
+
+        /* Ultra-wide screen optimization */
+        @media (min-width: 1400px) {
+            .nav-container,
+            .categories,
+            .properties-container {
+                max-width: 1400px;
+            }
+        }
+
+        /* Tablet-specific optimizations */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .categories-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .hero {
+                padding: 7rem 2rem 5rem;
+            }
+        }
+
+        /* Small mobile devices */
+        @media (max-width: 480px) {
+            .hero {
+                padding: 5rem 1rem 3rem;
+            }
+
+            .search-container {
+                margin: 0 0.5rem;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.8rem;
+            }
+
+            .category-card {
+                padding: 1rem;
+            }
+        }
+
+        /* Landscape mobile orientation */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .hero {
+                padding: 3rem 2rem 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+
+    <!-- Updated logo placeholder with blue theme -->
+    <header class="header" id="header">
+        <div class="nav-container">
+            <div class="logo">
+                <!-- Updated logo image source to logo1.png -->
+                <img src="logo1.png" alt="عقاري شوب" class="logo-image">
+                عقاري شوب
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#properties">العقارات</a></li>
+                    <li><a href="#services">الخدمات</a></li>
+                    <li><a href="#ai">Ai</a></li>
+                    <!-- <li><a href="#consultation">الاستشارات</a></li> -->
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <!-- Added dark mode toggle button -->
+                <button class="theme-toggle" id="theme-toggle" title="تبديل الوضع المظلم">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+                <a href="login.html" class="btn btn-primary">تسجيل الدخول</a>
+                <a href="register.html" class="btn btn-secondary">إنشاء حساب</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>مرحباً بك في عقاري شوب</h1>
+        <p>موقعك الأول للعقارات في المنطقة - ابحث عن منزل أحلامك أو استثمارك المثالي</p>
+        <!-- Enhanced search container with filters -->
+        <div class="search-container">
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="ابحث عن عقار، موقع، أو نوع العقار...">
+                <button onclick="performSearch()"><i class="fas fa-search"></i> بحث</button>
+            </div>
+            <div class="search-filters">
+                <button class="filter-btn active" data-filter="all">الكل</button>
+                <button class="filter-btn" data-filter="sale">للبيع</button>
+                <button class="filter-btn" data-filter="rent">للإيجار</button>
+                <button class="filter-btn" data-filter="land">أراضي</button>
+                <button class="filter-btn" data-filter="commercial">تجاري</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Properties Section -->
+    <section class="properties" id="properties">
+    <div class="properties-container">
+        <h2 class="section-title">العقارات المميزة في الجزائر</h2>
+        <div class="properties-grid" id="propertiesGrid">
+            
+            <!-- فيلا للبيع -->
+            <div class="property-card" data-category="sale" data-price="750000000">
+                <div class="property-image" style="background-image: url('p1.png');">
+                    <div class="property-price">750,000,000 DA</div>
+                </div>
+                <div class="property-info">
+                    <h3>فيلا حديثة في الجزائر العاصمة</h3>
+                    <p>فيلا فاخرة بتصميم عصري ومواصفات عالية في حي راقي</p>
+                    <div class="property-details">
+                        <span><i class="fas fa-bed"></i> 5 غرف</span>
+                        <span><i class="fas fa-bath"></i> 3 حمامات</span>
+                        <span><i class="fas fa-ruler-combined"></i> 350 م²</span>
+                    </div>
+                    <button class="btn btn-primary" style="width: 100%;" onclick="showPropertyDetails('villa-1')">عرض التفاصيل</button>
+                </div>
+            </div>
+
+            <!-- شقة للكراء -->
+            <div class="property-card" data-category="rent" data-price="45000">
+                <div class="property-image" style="background-image: url('p3.png');">
+                    <div class="property-price">45,000 DA/شهر</div>
+                </div>
+                <div class="property-info">
+                    <h3>شقة عائلية في وهران</h3>
+                    <p>شقة واسعة في موقع متميز قريب من الخدمات الأساسية</p>
+                    <div class="property-details">
+                        <span><i class="fas fa-bed"></i> 3 غرف</span>
+                        <span><i class="fas fa-bath"></i> 2 حمام</span>
+                        <span><i class="fas fa-ruler-combined"></i> 140 م²</span>
+                    </div>
+                    <button class="btn btn-primary" style="width: 100%;" onclick="showPropertyDetails('apartment-1')">عرض التفاصيل</button>
+                </div>
+            </div>
+
+            <!-- مبنى تجاري -->
+            <div class="property-card" data-category="commercial" data-price="2000000000">
+                <div class="property-image" style="background-image: url('p2.png');">
+                    <div class="property-price">2,000,000,000 DA</div>
+                </div>
+                <div class="property-info">
+                    <h3>مبنى تجاري للاستثمار في قسنطينة</h3>
+                    <p>مبنى تجاري ضخم في موقع حيوي مناسب للمشاريع الكبرى</p>
+                    <div class="property-details">
+                        <span><i class="fas fa-building"></i> 5 طوابق</span>
+                        <span><i class="fas fa-car"></i> موقف سيارات</span>
+                        <span><i class="fas fa-ruler-combined"></i> 900 م²</span>
+                    </div>
+                    <button class="btn btn-primary" style="width: 100%;" onclick="showPropertyDetails('commercial-1')">عرض التفاصيل</button>
+                </div>
+            </div>
+
+            <!-- أرض للبناء -->
+            <div class="property-card" data-category="land" data-price="1200000">
+                <div class="property-image" style="background-image: url('p4.png');">
+                    <div class="property-price">1,200,000 DA</div>
+                </div>
+                <div class="property-info">
+                    <h3>أرض سكنية في البليدة</h3>
+                    <p>أرض في موقع ممتاز مناسبة للبناء السكني</p>
+                    <div class="property-details">
+                        <span><i class="fas fa-map"></i> سكني</span>
+                        <span><i class="fas fa-road"></i> واجهتين</span>
+                        <span><i class="fas fa-ruler-combined"></i> 650 م²</span>
+                    </div>
+                    <button class="btn btn-primary" style="width: 100%;" onclick="showPropertyDetails('land-1')">عرض التفاصيل</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- AI Section -->
+    <section class="ai-section" id="ai">
+        <h2 class="section-title">ركن الذكاء الاصطناعي</h2>
+        <p>تقنيات متطورة لتصميم وتخصيص عقارك</p>
+        <div class="ai-features">
+            <div class="ai-feature">
+                <i class="fas fa-home"></i>
+                <h3>توليد تصاميم المنازل</h3>
+                <p>تصاميم مخصصة بالذكاء الاصطناعي</p>
+            </div>
+            <div class="ai-feature">
+                <i class="fas fa-palette"></i>
+                <h3>تغيير الديكور</h3>
+                <p>تجربة ديكورات مختلفة افتراضياً</p>
+            </div>
+            <div class="ai-feature">
+                <i class="fas fa-paint-brush"></i>
+                <h3>تعديل الألوان</h3>
+                <p>اختبار ألوان الواجهات والديكور</p>
+            </div>
+        </div>
+        <button class="btn btn-primary" style="margin-top: 2rem;">جرب الآن (قريباً)</button>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <h2 class="section-title">خدمات ما بعد البيع</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-paint-roller"></i>
+                <h3>الدهان والتشطيبات</h3>
+                <p>خدمات دهان وتشطيب عالية الجودة</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-tools"></i>
+                <h3>التصليح والصيانة</h3>
+                <p>صيانة شاملة لجميع أجزاء العقار</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-faucet"></i>
+                <h3>السباكة</h3>
+                <p>خدمات سباكة متخصصة ومضمونة</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-hammer"></i>
+                <h3>خدمة الصنوير (الجبس)</h3>
+                <p>أعمال الجبس والديكورات الداخلية</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-bullhorn"></i>
+                <h3>الإشهار والتسويق</h3>
+                <p>تسويق عقارك بأفضل الطرق</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-bolt"></i>
+                <h3>الأسلاك الكهربائية</h3>
+                <p>تمديد وتركيب الأنظمة الكهربائية</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-truck"></i>
+                <h3>نقل وتركيب الأثاث</h3>
+                <p>خدمات نقل وتركيب شاملة</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-comments"></i>
+                <h3>الاستشارات</h3>
+                <p>نصائح وخبرة من المختصين</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>عقاري شوب</h3>
+                <p>موقعك الأول للعقارات والخدمات العقارية المتكاملة</p>
+            </div>
+            <div class="footer-section">
+                <h3>روابط سريعة</h3>
+                <a href="#home">الرئيسية</a>
+                <a href="#properties">العقارات</a>
+                <a href="#services">الخدمات</a>
+                <a href="#ai">الذكاء الاصطناعي</a>
+            </div>
+            <div class="footer-section">
+                <h3>تواصل معنا</h3>
+                <p><i class="fas fa-phone"></i> 0675613026 </p>
+                <p><i class="fas fa-envelope"></i> info@aqarishop.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> سكيكدة، الجزائر</p>
+            </div>
+        </div>
+        <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 1rem; margin-top: 2rem;">
+            <p>&copy; 2025 عقاري شوب. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <!-- Added property details modal -->
+    <div id="propertyDetailModal" class="modal property-detail-modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('propertyDetailModal')">&times;</span>
+            <div id="propertyDetailContent">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dark mode functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('themeIcon');
+            
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                themeIcon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Load saved theme
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            const themeIcon = document.getElementById('themeIcon');
+            
+            if (savedTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fas fa-sun';
+            }
+        });
+
+       // Property data with phone numbers (Algeria)
+const properties = [
+    {
+        id: 'villa-1',
+        title: 'فيلا حديثة في الجزائر العاصمة',
+        price: '750,000,000 DA',
+        description: 'فيلا فاخرة بتصميم عصري ومواصفات عالية في حي راقي بالعاصمة',
+        features: {
+            'غرف النوم': '5 غرف رئيسية',
+            'الحمامات': '3 حمامات كاملة',
+            'المساحة': '350 متر مربع',
+            'المواقف': 'موقفان مغطّيان',
+            'الحديقة': 'حديقة خاصة 120م²',
+            'المطبخ': 'مطبخ مجهز بالكامل'
+        },
+        contact: '0675613026'
+    },
+    {
+        id: 'apartment-1',
+        title: 'شقة عائلية في وهران',
+        price: '45,000 DA/شهر',
+        description: 'شقة واسعة ومريحة في موقع استراتيجي قريب من جميع الخدمات والمرافق',
+        features: {
+            'غرف النوم': '3 غرف نوم',
+            'الحمامات': '2 حمام كامل',
+            'المساحة': '140 متر مربع',
+            'الصالة': 'صالة واسعة',
+            'المطبخ': 'مطبخ أمريكي',
+            'البلكونة': 'بلكونة مطلة على البحر'
+        },
+        contact: '0675613026'
+    },
+    {
+        id: 'commercial-1',
+        title: 'مبنى تجاري للاستثمار في قسنطينة',
+        price: '2,000,000,000 DA',
+        description: 'مبنى تجاري في موقع حيوي مناسب للاستثمار في المشاريع الكبرى',
+        features: {
+            'الطوابق': '5 طوابق',
+            'المساحة': '900 متر مربع',
+            'المواقف': '20 موقف سيارة',
+            'المصاعد': 'مصعدين حديثين',
+            'الأمان': 'نظام كاميرات وحراسة 24/24',
+            'الموقع': 'شارع تجاري رئيسي'
+        },
+        contact: '0675613026'
+    },
+    {
+        id: 'land-1',
+        title: 'أرض سكنية في البليدة',
+        price: '1,200,000 DA',
+        description: 'أرض في موقع ممتاز مناسبة للبناء السكني مع إطلالة رائعة على الجبال',
+        features: {
+            'المساحة': '650 متر مربع',
+            'النوع': 'سكني',
+            'الشوارع': 'واجهتين (شمالي وشرقي)',
+            'العمق': '30 متر',
+            'العرض': '22 متر',
+            'الخدمات': 'جميع الخدمات متوفرة (ماء + كهرباء + غاز)'
+        },
+        contact: '0675613026'
+    }
+];
+
+        function showPropertyDetails(propertyId) {
+            const property = properties.find(p => p.id === propertyId);
+            if (!property) return;
+
+            const content = `
+                <div class="property-detail-header">
+                    <div class="property-detail-image"></div>
+                    <div class="property-detail-info">
+                        <h2>${property.title}</h2>
+                        <div class="property-price" style="position: static; background: var(--primary-blue); display: inline-block; margin-bottom: 1rem;">
+                            ${property.price}
+                        </div>
+                        <p>${property.description}</p>
+                        <div style="margin-top: 1rem;">
+                            <strong>للتواصل: </strong>
+                            <a href="tel:${property.contact}" style="color: var(--primary-blue);">${property.contact}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="property-features">
+                    ${Object.entries(property.features).map(([key, value]) => `
+                        <div class="feature-item">
+                            <strong>${key}</strong><br>
+                            ${value}
+                        </div>
+                    `).join('')}
+                </div>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <!-- Enhanced contactOwner function to open phone app -->
+                    <button class="btn btn-primary" onclick="contactOwner('${property.contact}')" style="margin-left: 1rem;">
+                        <i class="fas fa-phone"></i> اتصل الآن
+                    </button>
+                    <button class="btn" onclick="openWhatsApp('${property.contact}', '${property.title}')" 
+                            style="background: #25D366; color: white; margin-left: 1rem; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; transition: all 0.3s ease;">
+                        <i class="fab fa-whatsapp"></i> واتساب
+                    </button>
+                </div>
+            `;
+
+            document.getElementById('propertyDetailContent').innerHTML = content;
+            openModal('propertyDetailModal');
+        }
+
+        function contactOwner(phone) {
+            window.location.href = `tel:${phone}`;
+        }
+
+        function openWhatsApp(phone, propertyTitle) {
+            const message = encodeURIComponent(`مرحباً، أنا مهتم بالعقار: ${propertyTitle}`);
+            const whatsappUrl = `https://wa.me/${phone}?text=${message}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        function performSearch() {
+            const searchTerm = document.getElementById('searchInput').value.trim();
+            const searchButton = event.target;
+            
+            searchButton.innerHTML = '<span class="loading"></span> جاري البحث...';
+            searchButton.disabled = true;
+            
+            setTimeout(() => {
+                searchButton.innerHTML = '<i class="fas fa-search"></i> بحث';
+                searchButton.disabled = false;
+                
+                const propertyCards = document.querySelectorAll('.property-card');
+                let foundResults = false;
+                
+                if (!searchTerm) {
+                    // Show all properties if search is empty
+                    propertyCards.forEach(property => {
+                        property.style.display = 'block';
+                        property.style.opacity = '1';
+                        property.style.transform = 'scale(1)';
+                    });
+                    return;
+                }
+                
+                propertyCards.forEach((property, index) => {
+                    const title = property.querySelector('h3').textContent.toLowerCase();
+                    const description = property.querySelector('p').textContent.toLowerCase();
+                    const price = property.querySelector('.property-price').textContent.toLowerCase();
+                    const location = property.querySelector('.location') ? property.querySelector('.location').textContent.toLowerCase() : '';
+                    const searchLower = searchTerm.toLowerCase();
+                    
+                    // Enhanced search to include price and location
+                    if (title.includes(searchLower) || 
+                        description.includes(searchLower) || 
+                        price.includes(searchLower) ||
+                        location.includes(searchLower)) {
+                        
+                        property.style.display = 'block';
+                        property.style.opacity = '0';
+                        property.style.transform = 'scale(0.8)';
+                        
+                        setTimeout(() => {
+                            property.style.opacity = '1';
+                            property.style.transform = 'scale(1)';
+                        }, index * 100);
+                        
+                        foundResults = true;
+                    } else {
+                        property.style.display = 'none';
+                    }
+                });
+                
+                if (!foundResults) {
+                    // Show no results message
+                    showNoResultsMessage();
+                }
+                
+                console.log(`[v0] Search completed for: ${searchTerm}, Found: ${foundResults}`);
+            }, 800);
+        }
+
+        function showNoResultsMessage() {
+            const propertiesSection = document.querySelector('.properties-grid');
+            let noResultsDiv = document.getElementById('noResults');
+            
+            if (!noResultsDiv) {
+                noResultsDiv = document.createElement('div');
+                noResultsDiv.id = 'noResults';
+                noResultsDiv.style.cssText = `
+                    text-align: center;
+                    padding: 3rem;
+                    background: var(--glass-bg);
+                    backdrop-filter: blur(15px);
+                    border: 1px solid var(--glass-border);
+                    border-radius: 20px;
+                    margin: 2rem auto;
+                    max-width: 500px;
+                    color: white;
+                `;
+                noResultsDiv.innerHTML = `
+                    <i class="fas fa-search" style="font-size: 3rem; color: var(--accent-blue); margin-bottom: 1rem;"></i>
+                    <h3>لم يتم العثور على نتائج</h3>
+                    <p>جرب البحث بكلمات مختلفة أو تصفح جميع العقارات</p>
+                    <button onclick="clearSearch()" style="
+                        background: var(--primary-blue);
+                        color: white;
+                        border: none;
+                        padding: 0.8rem 2rem;
+                        border-radius: 25px;
+                        cursor: pointer;
+                        margin-top: 1rem;
+                        transition: all 0.3s;
+                    ">عرض جميع العقارات</button>
+                `;
+                propertiesSection.appendChild(noResultsDiv);
+            }
+            noResultsDiv.style.display = 'block';
+        }
+
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            const propertyCards = document.querySelectorAll('.property-card');
+            const noResultsDiv = document.getElementById('noResults');
+            
+            if (noResultsDiv) {
+                noResultsDiv.style.display = 'none';
+            }
+            
+            propertyCards.forEach(property => {
+                property.style.display = 'block';
+                property.style.opacity = '1';
+                property.style.transform = 'scale(1)';
+            });
+            
+            // Reset active filter
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    const propertyCards = document.querySelectorAll('.property-card');
+                    const noResultsDiv = document.getElementById('noResults');
+                    
+                    if (noResultsDiv) {
+                        noResultsDiv.style.display = 'none';
+                    }
+                    
+                    propertyCards.forEach((property, index) => {
+                        if (filter === 'all') {
+                            property.style.display = 'block';
+                            property.style.opacity = '0';
+                            setTimeout(() => {
+                                property.style.opacity = '1';
+                            }, index * 50);
+                        } else {
+                            // Simple filter logic - you can enhance this based on your property data
+                            const title = property.querySelector('h3').textContent.toLowerCase();
+                            const description = property.querySelector('p').textContent.toLowerCase();
+                            
+                            let shouldShow = false;
+                            switch(filter) {
+                                case 'sale':
+                                    shouldShow = title.includes('بيع') || description.includes('بيع');
+                                    break;
+                                case 'rent':
+                                    shouldShow = title.includes('إيجار') || description.includes('إيجار');
+                                    break;
+                                case 'land':
+                                    shouldShow = title.includes('أرض') || description.includes('أرض');
+                                    break;
+                                case 'commercial':
+                                    shouldShow = title.includes('تجاري') || description.includes('تجاري');
+                                    break;
+                            }
+                            
+                            if (shouldShow) {
+                                property.style.display = 'block';
+                                property.style.opacity = '0';
+                                setTimeout(() => {
+                                    property.style.opacity = '1';
+                                }, index * 50);
+                            } else {
+                                property.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+        });
+
+        // Add enter key support for search
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        // Enhanced scroll indicator
+        window.addEventListener('scroll', function() {
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (scrollTop / scrollHeight) * 100;
+            document.getElementById('scrollIndicator').style.width = scrolled + '%';
+        });
+
+        // Enhanced header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            const isDark = document.body.getAttribute('data-theme') === 'dark';
+            
+            if (window.scrollY > 100) {
+                header.style.background = isDark ? 'rgba(15, 23, 42, 0.95)' : 'rgba(37, 99, 235, 0.95)';
+                header.style.backdropFilter = 'blur(25px)';
+            } else {
+                header.style.background = isDark ? 'rgba(15, 23, 42, 0.8)' : 'rgba(37, 99, 235, 0.15)';
+                header.style.backdropFilter = 'blur(20px)';
+            }
+        });
+
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            setTimeout(() => {
+                document.querySelector(`#${modalId} .modal-content`).style.transform = 'scale(1)';
+                document.querySelector(`#${modalId} .modal-content`).style.opacity = '1';
+            }, 10);
+        }
+
+        function closeModal(modalId) {
+            document.querySelector(`#${modalId} .modal-content`).style.transform = 'scale(0.8)';
+            document.querySelector(`#${modalId} .modal-content`).style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById(modalId).style.display = 'none';
+            }, 300);
+        }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                const modalId = event.target.id;
+                closeModal(modalId);
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll
+        function animateOnScroll() {
+            const cards = document.querySelectorAll('.property-card, .category-card, .service-card');
+            cards.forEach((card, index) => {
+                const cardTop = card.getBoundingClientRect().top;
+                const cardVisible = 150;
+                
+                if (cardTop < window.innerHeight - cardVisible) {
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0) scale(1)';
+                    }, index * 100);
+                }
+            });
+        }
+
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+
+        // Initialize card animations
+        document.querySelectorAll('.property-card, .category-card, .service-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px) scale(0.9)';
+            card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+        });
+
+        document.querySelectorAll('.modal-content').forEach(modal => {
+            modal.style.transform = 'scale(0.8)';
+            modal.style.opacity = '0';
+            modal.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+        });
+
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideUp {
+                from { transform: translateY(20px); opacity: 0; }
+                to { transform: translateY(0); opacity: 1; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        themeToggle.addEventListener('click', toggleTheme);
+    </script>
+</body>
+</html>

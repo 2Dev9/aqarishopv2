@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <!-- Enhanced viewport meta tag for better mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=5.0">
+    <title>إنشاء حساب - عقاري شوب</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="logo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Enhanced CSS variables with better mobile support */
+        :root {
+            --primary-blue: #1e40af;
+            --secondary-blue: #3b82f6;
+            --light-blue: #dbeafe;
+            --dark-blue: #1e3a8a;
+            --accent-blue: #60a5fa;
+            --glass-bg: rgba(59, 130, 246, 0.1);
+            --glass-border: rgba(59, 130, 246, 0.2);
+            --glass-shadow: 0 8px 32px 0 rgba(30, 64, 175, 0.37);
+            --container-padding: 1rem;
+        }
+
+        [data-theme="dark"] {
+            --primary-blue: #60a5fa;
+            --secondary-blue: #93c5fd;
+            --light-blue: #1e3a8a;
+            --dark-blue: #0f172a;
+            --accent-blue: #bfdbfe;
+            --glass-bg: rgba(30, 58, 138, 0.2);
+            --glass-border: rgba(96, 165, 250, 0.2);
+            --glass-shadow: 0 8px 32px 0 rgba(30, 64, 175, 0.5);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(0.5rem, 2vw, 1rem);
+            padding-top: clamp(1rem, 4vh, 2rem);
+            transition: all 0.3s ease;
+            /* Better mobile support */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        [data-theme="dark"] body {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--primary-blue) 100%);
+        }
+
+        /* Enhanced container with better mobile layout */
+        .register-container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: clamp(1.5rem, 4vw, 3rem);
+            width: 100%;
+            max-width: clamp(320px, 95vw, 500px);
+            box-shadow: var(--glass-shadow);
+            /* Better mobile positioning */
+            margin: clamp(0.5rem, 2vw, 1rem) auto;
+            position: relative;
+        }
+
+        /* Enhanced theme toggle for mobile */
+        .theme-toggle {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: white;
+            padding: 0.75rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            width: clamp(40px, 8vw, 50px);
+            height: clamp(40px, 8vw, 50px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Better touch target */
+            min-width: clamp(40px, 8vw, 50px);
+            min-height: clamp(40px, 8vw, 50px);
+        }
+
+        .theme-toggle:hover {
+            background: var(--accent-blue);
+            color: var(--dark-blue);
+            transform: scale(1.1);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            /* Better spacing for mobile */
+            margin-top: 1rem;
+        }
+
+        .logo img {
+            width: clamp(60px, 15vw, 80px);
+            height: clamp(60px, 15vw, 80px);
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            border: 2px solid var(--glass-border);
+        }
+
+        .logo h1 {
+            color: white;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(30, 64, 175, 0.5);
+        }
+
+        .logo p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+        }
+
+        /* Enhanced form styling for better mobile experience */
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: white;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: clamp(0.8rem, 3vw, 1rem);
+            border: 2px solid var(--glass-border);
+            border-radius: 10px;
+            background: var(--glass-bg);
+            color: white;
+            font-size: clamp(0.9rem, 3vw, 1rem);
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            /* Better mobile input handling */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            min-height: clamp(44px, 8vw, 50px);
+        }
+
+        .form-group input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .form-group select option {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+        }
+
+        /* Enhanced form row with better mobile layout */
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(0.5rem, 2vw, 1rem);
+        }
+
+        /* Enhanced button with better mobile touch targets */
+        .btn {
+            width: 100%;
+            padding: clamp(0.8rem, 3vw, 1rem);
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: clamp(1rem, 3vw, 1.1rem);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--accent-blue);
+            /* Better touch target */
+            min-height: clamp(44px, 8vw, 50px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            background: var(--accent-blue);
+            color: var(--dark-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(30, 64, 175, 0.4);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .links {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .links a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: color 0.3s;
+            /* Better mobile link spacing */
+            display: inline-block;
+            padding: 0.5rem;
+            border-radius: 8px;
+        }
+
+        .links a:hover {
+            color: var(--accent-blue);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Enhanced back button for mobile */
+        .back-home {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--glass-bg);
+            color: white;
+            padding: clamp(0.5rem, 2vw, 0.75rem) clamp(0.8rem, 3vw, 1rem);
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+            /* Better touch target */
+            min-height: clamp(44px, 8vw, 50px);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-home:hover {
+            background: var(--accent-blue);
+            color: var(--dark-blue);
+            transform: translateY(-2px);
+        }
+
+        /* Enhanced terms checkbox styling */
+        .terms {
+            display: flex;
+            align-items: flex-start;
+            gap: clamp(0.5rem, 2vw, 0.75rem);
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.5;
+            font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+        }
+
+        .terms input[type="checkbox"] {
+            width: auto;
+            min-width: 20px;
+            min-height: 20px;
+            accent-color: var(--accent-blue);
+            margin: 0;
+            flex-shrink: 0;
+        }
+
+        .terms label {
+            margin: 0;
+            cursor: pointer;
+        }
+
+        .terms a {
+            color: var(--accent-blue);
+            text-decoration: underline;
+        }
+
+        .terms a:hover {
+            color: white;
+        }
+
+        /* Comprehensive mobile responsive design */
+        @media (min-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* Small mobile devices */
+        @media (max-width: 480px) {
+            .register-container {
+                padding: 1rem;
+                margin: 0.25rem;
+            }
+
+            .logo {
+                margin-bottom: 1rem;
+                margin-top: 0.5rem;
+            }
+
+            .form-group {
+                margin-bottom: 0.8rem;
+            }
+
+            .terms {
+                margin-bottom: 0.8rem;
+            }
+
+            .links {
+                margin-top: 1rem;
+            }
+        }
+
+        /* Tablet optimization */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .register-container {
+                max-width: 550px;
+                padding: 3rem;
+            }
+        }
+
+        /* Landscape mobile */
+        @media (max-height: 600px) and (orientation: landscape) {
+            body {
+                padding-top: 0.5rem;
+            }
+
+            .register-container {
+                margin: 0.25rem auto;
+            }
+
+            .logo {
+                margin-bottom: 0.5rem;
+                margin-top: 0.25rem;
+            }
+
+            .logo img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .form-group {
+                margin-bottom: 0.5rem;
+            }
+        }
+
+        /* Ultra-wide screens */
+        @media (min-width: 1400px) {
+            .register-container {
+                max-width: 600px;
+            }
+        }
+
+        /* Error message styling */
+        .error-message {
+            display: none;
+            color: #ef4444;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            background: rgba(239, 68, 68, 0.1);
+            border-radius: 5px;
+            border-left: 3px solid #ef4444;
+        }
+
+        /* Success message styling */
+        .success-message {
+            display: none;
+            color: #10b981;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+            border-left: 3px solid #10b981;
+        }
+
+        /* Reduced motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .form-group input,
+            .form-group select,
+            .btn {
+                border-width: 3px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Enhanced theme toggle with better accessibility -->
+    <button class="theme-toggle" onclick="toggleTheme()" title="تبديل الوضع المظلم" aria-label="تبديل الوضع المظلم">
+        <i class="fas fa-moon" id="themeIcon"></i>
+    </button>
+
+    <a href="index.html" class="back-home" aria-label="العودة للصفحة الرئيسية">
+        <i class="fas fa-arrow-right"></i> العودة للرئيسية
+    </a>
+
+    <div class="register-container">
+        <div class="logo">
+            <img src="logo1.png" alt="عقاري شوب">
+            <h1>عقاري شوب</h1>
+            <p>إنشاء حساب جديد</p>
+        </div>
+
+        <!-- Enhanced form with better validation and accessibility -->
+        <form id="registerForm" novalidate>
+            <div class="form-group">
+                <label for="userType">نوع المستخدم:</label>
+                <select id="userType" required aria-describedby="userType-error">
+                    <option value="">اختر نوع المستخدم</option>
+                    <option value="seller">بائع</option>
+                    <option value="buyer">مشتري</option>
+                </select>
+                <div id="userType-error" class="error-message"></div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName">الاسم الأول:</label>
+                    <input type="text" id="firstName" placeholder="الاسم الأول" required aria-describedby="firstName-error" autocomplete="given-name">
+                    <div id="firstName-error" class="error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">اسم العائلة:</label>
+                    <input type="text" id="lastName" placeholder="اسم العائلة" required aria-describedby="lastName-error" autocomplete="family-name">
+                    <div id="lastName-error" class="error-message"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">البريد الإلكتروني:</label>
+                <input type="email" id="email" placeholder="أدخل بريدك الإلكتروني" required aria-describedby="email-error" autocomplete="email">
+                <div id="email-error" class="error-message"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">رقم الهاتف:</label>
+                <input type="tel" id="phone" placeholder="+213 XX XXX XXXX" required aria-describedby="phone-error" autocomplete="tel">
+                <div id="phone-error" class="error-message"></div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="password">كلمة المرور:</label>
+                    <input type="password" id="password" placeholder="كلمة المرور" required aria-describedby="password-error" autocomplete="new-password">
+                    <div id="password-error" class="error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">تأكيد كلمة المرور:</label>
+                    <input type="password" id="confirmPassword" placeholder="تأكيد كلمة المرور" required aria-describedby="confirmPassword-error" autocomplete="new-password">
+                    <div id="confirmPassword-error" class="error-message"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="city">المدينة:</label>
+                <select id="city" required aria-describedby="city-error">
+                    <option value="">اختر المدينة</option>
+                    <option value="algiers">الجزائر العاصمة</option>
+                    <option value="oran">وهران</option>
+                    <option value="constantine">قسنطينة</option>
+                    <option value="annaba">عنابة</option>
+                    <option value="blida">البليدة</option>
+                    <option value="batna">باتنة</option>
+                    <option value="djelfa">الجلفة</option>
+                    <option value="setif">سطيف</option>
+                    <option value="sidi-bel-abbes">سيدي بلعباس</option>
+                    <option value="biskra">بسكرة</option>
+                    <option value="tebessa">تبسة</option>
+                    <option value="other">أخرى</option>
+                </select>
+                <div id="city-error" class="error-message"></div>
+            </div>
+
+            <div class="terms">
+                <input type="checkbox" id="terms" required aria-describedby="terms-error">
+                <label for="terms">أوافق على <a href="terms.html" target="_blank">الشروط والأحكام</a> و <a href="privacy.html" target="_blank">سياسة الخصوصية</a></label>
+            </div>
+            <div id="terms-error" class="error-message"></div>
+
+            <button type="submit" class="btn" id="registerBtn">
+                <i class="fas fa-user-plus"></i> إنشاء حساب
+            </button>
+        </form>
+
+        <div class="links">
+            <p>لديك حساب بالفعل؟ <a href="login.html">تسجيل الدخول</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme toggle functionality
+            function toggleTheme() {
+                const body = document.body;
+                const themeIcon = document.getElementById('themeIcon');
+                
+                if (body.getAttribute('data-theme') === 'dark') {
+                    body.removeAttribute('data-theme');
+                    themeIcon.className = 'fas fa-moon';
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.setAttribute('data-theme', 'dark');
+                    themeIcon.className = 'fas fa-sun';
+                    localStorage.setItem('theme', 'dark');
+                }
+            }
+
+            // Load saved theme
+            const savedTheme = localStorage.getItem('theme');
+            const themeIcon = document.getElementById('themeIcon');
+            
+            if (savedTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fas fa-sun';
+            }
+
+            // Make toggleTheme globally available
+            window.toggleTheme = toggleTheme;
+
+            // Form elements
+            const form = document.getElementById('registerForm');
+            const userTypeSelect = document.getElementById('userType');
+            const firstNameInput = document.getElementById('firstName');
+            const lastNameInput = document.getElementById('lastName');
+            const emailInput = document.getElementById('email');
+            const phoneInput = document.getElementById('phone');
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('confirmPassword');
+            const citySelect = document.getElementById('city');
+            const termsCheckbox = document.getElementById('terms');
+            const registerBtn = document.getElementById('registerBtn');
+
+            // Validation functions
+            function showError(fieldId, message) {
+                const errorDiv = document.getElementById(fieldId + '-error');
+                const field = document.getElementById(fieldId);
+                
+                errorDiv.textContent = message;
+                errorDiv.style.display = 'block';
+                field.style.borderColor = '#ef4444';
+                field.setAttribute('aria-invalid', 'true');
+            }
+
+            function clearError(fieldId) {
+                const errorDiv = document.getElementById(fieldId + '-error');
+                const field = document.getElementById(fieldId);
+                
+                errorDiv.style.display = 'none';
+                field.style.borderColor = 'var(--glass-border)';
+                field.removeAttribute('aria-invalid');
+            }
+
+            function validateEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+
+            function validatePhone(phone) {
+                const phoneRegex = /^(\+213|0)[5-7][0-9]{8}$/;
+                return phoneRegex.test(phone.replace(/\s/g, ''));
+            }
+
+            function validateName(name) {
+                return name.trim().length >= 2 && /^[\u0600-\u06FFa-zA-Z\s]+$/.test(name);
+            }
+
+            function validatePassword(password) {
+                return password.length >= 8 && 
+                       /[A-Za-z]/.test(password) && 
+                       /[0-9]/.test(password);
+            }
+
+            // Real-time validation
+            userTypeSelect.addEventListener('change', function() {
+                if (this.value) {
+                    clearError('userType');
+                }
+            });
+
+            firstNameInput.addEventListener('input', function() {
+                if (validateName(this.value)) {
+                    clearError('firstName');
+                }
+            });
+
+            lastNameInput.addEventListener('input', function() {
+                if (validateName(this.value)) {
+                    clearError('lastName');
+                }
+            });
+
+            emailInput.addEventListener('input', function() {
+                if (this.value && validateEmail(this.value)) {
+                    clearError('email');
+                }
+            });
+
+            phoneInput.addEventListener('input', function() {
+                if (validatePhone(this.value)) {
+                    clearError('phone');
+                }
+            });
+
+            passwordInput.addEventListener('input', function() {
+                if (validatePassword(this.value)) {
+                    clearError('password');
+                }
+                // Check confirm password if it has value
+                if (confirmPasswordInput.value) {
+                    if (this.value === confirmPasswordInput.value) {
+                        clearError('confirmPassword');
+                    } else {
+                        showError('confirmPassword', 'كلمة المرور وتأكيد كلمة المرور غير متطابقتين');
+                    }
+                }
+            });
+
+            confirmPasswordInput.addEventListener('input', function() {
+                if (this.value === passwordInput.value) {
+                    clearError('confirmPassword');
+                } else if (this.value) {
+                    showError('confirmPassword', 'كلمة المرور وتأكيد كلمة المرور غير متطابقتين');
+                }
+            });
+
+            citySelect.addEventListener('change', function() {
+                if (this.value) {
+                    clearError('city');
+                }
+            });
+
+            termsCheckbox.addEventListener('change', function() {
+                if (this.checked) {
+                    clearError('terms');
+                }
+            });
+
+            // Form submission
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                let isValid = true;
+                const fields = ['userType', 'firstName', 'lastName', 'email', 'phone', 'password', 'confirmPassword', 'city', 'terms'];
+                
+                // Clear all previous errors
+                fields.forEach(clearError);
+                
+                // Validate all fields
+                if (!userTypeSelect.value) {
+                    showError('userType', 'يرجى اختيار نوع المستخدم');
+                    isValid = false;
+                }
+                
+                if (!firstNameInput.value.trim()) {
+                    showError('firstName', 'يرجى إدخال الاسم الأول');
+                    isValid = false;
+                } else if (!validateName(firstNameInput.value)) {
+                    showError('firstName', 'الاسم يجب أن يحتوي على حروف فقط وأن يكون أكثر من حرفين');
+                    isValid = false;
+                }
+                
+                if (!lastNameInput.value.trim()) {
+                    showError('lastName', 'يرجى إدخال اسم العائلة');
+                    isValid = false;
+                } else if (!validateName(lastNameInput.value)) {
+                    showError('lastName', 'اسم العائلة يجب أن يحتوي على حروف فقط وأن يكون أكثر من حرفين');
+                    isValid = false;
+                }
+                
+                if (!emailInput.value) {
+                    showError('email', 'يرجى إدخال البريد الإلكتروني');
+                    isValid = false;
+                } else if (!validateEmail(emailInput.value)) {
+                    showError('email', 'يرجى إدخال بريد إلكتروني صحيح');
+                    isValid = false;
+                }
+                
+                if (!phoneInput.value) {
+                    showError('phone', 'يرجى إدخال رقم الهاتف');
+                    isValid = false;
+                } else if (!validatePhone(phoneInput.value)) {
+                    showError('phone', 'يرجى إدخال رقم هاتف جزائري صحيح (مثال: +213 XX XXX XXXX)');
+                    isValid = false;
+                }
+                
+                if (!passwordInput.value) {
+                    showError('password', 'يرجى إدخال كلمة المرور');
+                    isValid = false;
+                } else if (!validatePassword(passwordInput.value)) {
+                    showError('password', 'كلمة المرور يجب أن تكون 8 أحرف على الأقل وتحتوي على حروف وأرقام');
+                    isValid = false;
+                }
+                
+                if (!confirmPasswordInput.value) {
+                    showError('confirmPassword', 'يرجى تأكيد كلمة المرور');
+                    isValid = false;
+                } else if (passwordInput.value !== confirmPasswordInput.value) {
+                    showError('confirmPassword', 'كلمة المرور وتأكيد كلمة المرور غير متطابقتين');
+                    isValid = false;
+                }
+                
+                if (!citySelect.value) {
+                    showError('city', 'يرجى اختيار المدينة');
+                    isValid = false;
+                }
+                
+                if (!termsCheckbox.checked) {
+                    showError('terms', 'يجب الموافقة على الشروط والأحكام');
+                    isValid = false;
+                }
+                
+                if (!isValid) {
+                    // Focus on first error field
+                    const firstError = form.querySelector('[aria-invalid="true"]');
+                    if (firstError) {
+                        firstError.focus();
+                        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                    return;
+                }
+                
+                // Simulate registration process
+                const originalText = registerBtn.innerHTML;
+                registerBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري إنشاء الحساب...';
+                registerBtn.disabled = true;
+                
+                setTimeout(() => {
+                    alert(`مرحباً ${firstNameInput.value}! تم إنشاء حسابك بنجاح. يرجى تفعيل حسابك من خلال الرابط المرسل إلى بريدك الإلكتروني.`);
+                    window.location.href = 'login.html';
+                }, 3000);
+            });
+
+            // Handle Enter key in form fields
+            form.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && e.target.tagName !== 'BUTTON') {
+                    e.preventDefault();
+                    // Move to next field or submit if last field
+                    const formElements = Array.from(form.elements);
+                    const currentIndex = formElements.indexOf(e.target);
+                    const nextElement = formElements[currentIndex + 1];
+                    
+                    if (nextElement && nextElement.type !== 'submit') {
+                        nextElement.focus();
+                    } else {
+                        form.dispatchEvent(new Event('submit'));
+                    }
+                }
+            });
+
+            // Auto-focus first empty field
+            const firstEmptyField = form.querySelector('input:not([value]), select:not([value])');
+            if (firstEmptyField) {
+                firstEmptyField.focus();
+            }
+
+            // Phone number formatting
+            phoneInput.addEventListener('input', function() {
+                let value = this.value.replace(/\D/g, '');
+                if (value.startsWith('213')) {
+                    value = '+' + value;
+                } else if (value.startsWith('0')) {
+                    // Keep as is for local format
+                } else if (value.length > 0) {
+                    value = '+213' + value;
+                }
+                this.value = value;
+            });
+        });
+    </script>
+</body>
+</html>

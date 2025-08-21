@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <!-- Enhanced viewport meta tag for better mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=5.0">
+    <title>تسجيل الدخول - عقاري شوب</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="logo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Enhanced CSS variables with better mobile support */
+        :root {
+            --primary-blue: #1e40af;
+            --secondary-blue: #3b82f6;
+            --light-blue: #dbeafe;
+            --dark-blue: #1e3a8a;
+            --accent-blue: #60a5fa;
+            --glass-bg: rgba(59, 130, 246, 0.1);
+            --glass-border: rgba(59, 130, 246, 0.2);
+            --glass-shadow: 0 8px 32px 0 rgba(30, 64, 175, 0.37);
+            --container-padding: 1rem;
+        }
+
+        [data-theme="dark"] {
+            --primary-blue: #60a5fa;
+            --secondary-blue: #93c5fd;
+            --light-blue: #1e3a8a;
+            --dark-blue: #0f172a;
+            --accent-blue: #bfdbfe;
+            --glass-bg: rgba(30, 58, 138, 0.2);
+            --glass-border: rgba(96, 165, 250, 0.2);
+            --glass-shadow: 0 8px 32px 0 rgba(30, 64, 175, 0.5);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--container-padding);
+            transition: all 0.3s ease;
+            /* Better mobile support */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            /* Enhanced responsive design for all devices */
+            /* Better fluid scaling and mobile-first approach */
+            padding: clamp(0.5rem, 2vw, 1rem);
+        }
+
+        [data-theme="dark"] body {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--primary-blue) 100%);
+        }
+
+        /* Enhanced container with better mobile layout */
+        .login-container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            width: 100%;
+            max-width: clamp(300px, 90vw, 450px);
+            box-shadow: var(--glass-shadow);
+            /* Better mobile positioning */
+            margin: clamp(0.5rem, 2vw, 1rem) auto;
+        }
+
+        /* Enhanced theme toggle for mobile */
+        .theme-toggle {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: white;
+            padding: 0.75rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Better touch target */
+            min-width: clamp(40px, 8vw, 50px);
+            min-height: clamp(40px, 8vw, 50px);
+        }
+
+        .theme-toggle:hover {
+            background: var(--accent-blue);
+            color: var(--dark-blue);
+            transform: scale(1.1);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 2rem;
+            /* Better spacing for mobile */
+            margin-top: 2rem;
+        }
+
+        .logo img {
+            width: clamp(60px, 15vw, 80px);
+            height: clamp(60px, 15vw, 80px);
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            border: 2px solid var(--glass-border);
+        }
+
+        .logo h1 {
+            color: white;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(30, 64, 175, 0.5);
+        }
+
+        .logo p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+        }
+
+        /* Enhanced form styling for better mobile experience */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: white;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: clamp(0.8rem, 3vw, 1rem);
+            border: 2px solid var(--glass-border);
+            border-radius: 10px;
+            background: var(--glass-bg);
+            color: white;
+            font-size: clamp(0.9rem, 3vw, 1rem);
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            /* Better mobile input handling */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            min-height: clamp(44px, 8vw, 50px);
+        }
+
+        .form-group input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .form-group select option {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+        }
+
+        /* Enhanced button with better mobile touch targets */
+        .btn {
+            width: 100%;
+            padding: clamp(0.8rem, 3vw, 1rem);
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: clamp(1rem, 3vw, 1.1rem);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--accent-blue);
+            /* Better touch target */
+            min-height: clamp(44px, 8vw, 50px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            background: var(--accent-blue);
+            color: var(--dark-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(30, 64, 175, 0.4);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .links {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .links a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            margin: 0 0.5rem;
+            transition: color 0.3s;
+            /* Better mobile link spacing */
+            display: inline-block;
+            padding: 0.5rem;
+            border-radius: 8px;
+        }
+
+        .links a:hover {
+            color: var(--accent-blue);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Enhanced back button for mobile */
+        .back-home {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--glass-bg);
+            color: white;
+            padding: clamp(0.5rem, 2vw, 0.75rem) clamp(0.8rem, 3vw, 1rem);
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+            /* Better touch target */
+            min-height: clamp(44px, 8vw, 50px);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-home:hover {
+            background: var(--accent-blue);
+            color: var(--dark-blue);
+            transform: translateY(-2px);
+        }
+
+        /* Comprehensive mobile responsive design */
+        @media (max-width: 768px) {
+            body {
+                padding: 0.5rem;
+            }
+            
+            .login-container {
+                padding: 1.5rem;
+                margin: 0.5rem;
+                border-radius: 15px;
+            }
+            
+            .back-home, .theme-toggle {
+                position: static;
+                margin-bottom: 1rem;
+            }
+
+            .theme-toggle {
+                float: left;
+                margin-left: 1rem;
+            }
+
+            .back-home {
+                float: right;
+            }
+
+            .logo {
+                clear: both;
+                margin-top: 1rem;
+            }
+
+            .links {
+                margin-top: 1.5rem;
+            }
+
+            .links a {
+                display: block;
+                margin: 0.5rem 0;
+            }
+        }
+
+        /* Improved mobile layout */
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 1rem;
+                margin: 0.25rem;
+            }
+
+            .logo {
+                margin-bottom: 1.5rem;
+                margin-top: 0.5rem;
+            }
+
+            .form-group {
+                margin-bottom: 1rem;
+            }
+
+            .links a {
+                display: block;
+                margin: 0.75rem 0;
+                padding: 0.75rem;
+            }
+        }
+
+        /* Tablet optimization */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .login-container {
+                max-width: 500px;
+                padding: 2.5rem;
+            }
+        }
+
+        /* Landscape mobile */
+        @media (max-height: 500px) and (orientation: landscape) {
+            body {
+                align-items: flex-start;
+                padding-top: 1rem;
+            }
+
+            .login-container {
+                margin: 0.5rem auto;
+            }
+
+            .logo {
+                margin-bottom: 1rem;
+                margin-top: 0.5rem;
+            }
+
+            .logo img {
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        /* Enhanced accessibility and touch targets */
+        @media (hover: none) and (pointer: coarse) {
+            .btn,
+            .form-group input,
+            .form-group select,
+            .theme-toggle,
+            .back-home {
+                min-height: 44px;
+            }
+        }
+
+        /* Reduced motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .form-group input,
+            .form-group select,
+            .btn {
+                border-width: 3px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Enhanced theme toggle with better accessibility -->
+    <button class="theme-toggle" onclick="toggleTheme()" title="تبديل الوضع المظلم" aria-label="تبديل الوضع المظلم">
+        <i class="fas fa-moon" id="themeIcon"></i>
+    </button>
+
+    <a href="index.html" class="back-home" aria-label="العودة للصفحة الرئيسية">
+        <i class="fas fa-arrow-right"></i> العودة للرئيسية
+    </a>
+
+    <div class="login-container">
+        <div class="logo">
+            <img src="logo1.png" alt="عقاري شوب">
+            <h1>عقاري شوب</h1>
+            <p>تسجيل الدخول إلى حسابك</p>
+        </div>
+
+        <!-- Enhanced form with better validation and accessibility -->
+        <form id="loginForm" novalidate>
+            <div class="form-group">
+                <label for="userType">نوع المستخدم:</label>
+                <select id="userType" required aria-describedby="userType-error">
+                    <option value="">اختر نوع المستخدم</option>
+                    <option value="seller">بائع</option>
+                    <option value="buyer">مشتري</option>
+                    <option value="guest">ضيف</option>
+                </select>
+                <div id="userType-error" class="error-message" style="display: none; color: #ef4444; font-size: 0.9rem; margin-top: 0.5rem;"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">البريد الإلكتروني:</label>
+                <input type="email" id="email" placeholder="أدخل بريدك الإلكتروني" required aria-describedby="email-error" autocomplete="email">
+                <div id="email-error" class="error-message" style="display: none; color: #ef4444; font-size: 0.9rem; margin-top: 0.5rem;"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">كلمة المرور:</label>
+                <input type="password" id="password" placeholder="أدخل كلمة المرور" required aria-describedby="password-error" autocomplete="current-password">
+                <div id="password-error" class="error-message" style="display: none; color: #ef4444; font-size: 0.9rem; margin-top: 0.5rem;"></div>
+            </div>
+
+            <button type="submit" class="btn" id="loginBtn">
+                <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+            </button>
+        </form>
+
+        <div class="links">
+            <a href="register.html">إنشاء حساب جديد</a>
+            <a href="#" onclick="handleForgotPassword()" role="button">نسيت كلمة المرور؟</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme toggle functionality
+            function toggleTheme() {
+                const body = document.body;
+                const themeIcon = document.getElementById('themeIcon');
+                
+                if (body.getAttribute('data-theme') === 'dark') {
+                    body.removeAttribute('data-theme');
+                    themeIcon.className = 'fas fa-moon';
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.setAttribute('data-theme', 'dark');
+                    themeIcon.className = 'fas fa-sun';
+                    localStorage.setItem('theme', 'dark');
+                }
+            }
+
+            // Load saved theme
+            const savedTheme = localStorage.getItem('theme');
+            const themeIcon = document.getElementById('themeIcon');
+            
+            if (savedTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fas fa-sun';
+            }
+
+            // Make toggleTheme globally available
+            window.toggleTheme = toggleTheme;
+
+            // Enhanced form validation
+            const form = document.getElementById('loginForm');
+            const userTypeSelect = document.getElementById('userType');
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const loginBtn = document.getElementById('loginBtn');
+
+            function showError(fieldId, message) {
+                const errorDiv = document.getElementById(fieldId + '-error');
+                const field = document.getElementById(fieldId);
+                
+                errorDiv.textContent = message;
+                errorDiv.style.display = 'block';
+                field.style.borderColor = '#ef4444';
+                field.setAttribute('aria-invalid', 'true');
+            }
+
+            function clearError(fieldId) {
+                const errorDiv = document.getElementById(fieldId + '-error');
+                const field = document.getElementById(fieldId);
+                
+                errorDiv.style.display = 'none';
+                field.style.borderColor = 'var(--glass-border)';
+                field.removeAttribute('aria-invalid');
+            }
+
+            function validateEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+
+            // Real-time validation
+            userTypeSelect.addEventListener('change', function() {
+                if (this.value) {
+                    clearError('userType');
+                }
+            });
+
+            emailInput.addEventListener('input', function() {
+                if (this.value && validateEmail(this.value)) {
+                    clearError('email');
+                }
+            });
+
+            passwordInput.addEventListener('input', function() {
+                if (this.value.length >= 6) {
+                    clearError('password');
+                }
+            });
+
+            // Form submission
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                let isValid = true;
+                
+                // Clear all previous errors
+                ['userType', 'email', 'password'].forEach(clearError);
+                
+                // Validate user type
+                if (!userTypeSelect.value) {
+                    showError('userType', 'يرجى اختيار نوع المستخدم');
+                    isValid = false;
+                }
+                
+                // Validate email
+                if (!emailInput.value) {
+                    showError('email', 'يرجى إدخال البريد الإلكتروني');
+                    isValid = false;
+                } else if (!validateEmail(emailInput.value)) {
+                    showError('email', 'يرجى إدخال بريد إلكتروني صحيح');
+                    isValid = false;
+                }
+                
+                // Validate password
+                if (!passwordInput.value) {
+                    showError('password', 'يرجى إدخال كلمة المرور');
+                    isValid = false;
+                } else if (passwordInput.value.length < 6) {
+                    showError('password', 'كلمة المرور يجب أن تكون 6 أحرف على الأقل');
+                    isValid = false;
+                }
+                
+                if (!isValid) {
+                    // Focus on first error field
+                    const firstError = form.querySelector('[aria-invalid="true"]');
+                    if (firstError) {
+                        firstError.focus();
+                    }
+                    return;
+                }
+                
+                // Simulate login process
+                const originalText = loginBtn.innerHTML;
+                loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري تسجيل الدخول...';
+                loginBtn.disabled = true;
+                
+                setTimeout(() => {
+                    const userTypeText = userTypeSelect.value === 'seller' ? 'بائع' : 
+                                       userTypeSelect.value === 'buyer' ? 'مشتري' : 'ضيف';
+                    alert(`مرحباً بك! تم تسجيل الدخول بنجاح كـ ${userTypeText}`);
+                    window.location.href = 'index.html';
+                }, 2000);
+            });
+
+            // Forgot password handler
+            window.handleForgotPassword = function() {
+                const email = emailInput.value;
+                if (email && validateEmail(email)) {
+                    alert(`سيتم إرسال رابط إعادة تعيين كلمة المرور إلى: ${email}`);
+                } else {
+                    alert('يرجى إدخال بريد إلكتروني صحيح أولاً');
+                    emailInput.focus();
+                }
+            };
+
+            // Handle Enter key in form fields
+            form.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    form.dispatchEvent(new Event('submit'));
+                }
+            });
+
+            // Auto-focus first empty field
+            const firstEmptyField = form.querySelector('input:not([value]), select:not([value])');
+            if (firstEmptyField) {
+                firstEmptyField.focus();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <!-- Enhanced viewport meta tag for better mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=5.0">
+    <title>سياسة الخصوصية - عقاري شوب</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="logo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Enhanced CSS variables with better mobile support */
+        :root {
+            --primary-blue: #1e40af;
+            --secondary-blue: #3b82f6;
+            --light-blue: #60a5fa;
+            --very-light-blue: #dbeafe;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --background: #ffffff;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --container-padding: 1rem;
+        }
+
+        [data-theme="dark"] {
+            --text-primary: #f9fafb;
+            --text-secondary: #d1d5db;
+            --background: #0f172a;
+            --glass-bg: rgba(30, 64, 175, 0.15);
+            --glass-border: rgba(59, 130, 246, 0.3);
+            --very-light-blue: #1e3a8a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 50%, var(--light-blue) 100%);
+            min-height: 100vh;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            /* Better mobile support */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.6;
+        }
+
+        /* Enhanced container with better mobile layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: clamp(0.75rem, 3vw, 2rem);
+        }
+
+        /* Enhanced header with better mobile responsiveness */
+        .header {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: clamp(1rem, 3vw, 1.5rem);
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            flex-wrap: wrap;
+            gap: clamp(0.5rem, 2vw, 1rem);
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .logo {
+            width: clamp(40px, 8vw, 50px);
+            height: clamp(40px, 8vw, 50px);
+            border-radius: 12px;
+            object-fit: cover;
+        }
+
+        .logo-text {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            font-weight: bold;
+            color: var(--text-primary);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Enhanced theme toggle with better mobile support */
+        .theme-toggle {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: white;
+            padding: 0.75rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            width: clamp(40px, 8vw, 50px);
+            height: clamp(40px, 8vw, 50px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Better touch target */
+            min-width: clamp(40px, 8vw, 50px);
+            min-height: clamp(40px, 8vw, 50px);
+        }
+
+        .theme-toggle:hover {
+            background: var(--secondary-blue);
+            color: var(--primary-blue);
+            transform: scale(1.1);
+        }
+
+        /* Enhanced content card with better mobile layout */
+        .content-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: clamp(1.5rem, 4vw, 3rem);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            font-weight: bold;
+            color: var(--text-primary);
+            text-align: center;
+            margin-bottom: 2rem;
+            text-shadow: 
+                0 6px 12px rgba(0, 0, 0, 0.4),
+                0 3px 6px rgba(30, 64, 175, 0.3),
+                0 1px 3px rgba(0, 0, 0, 0.2);
+            line-height: 1.2;
+        }
+
+        /* Enhanced section styling with better mobile layout */
+        .section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: clamp(1.25rem, 3vw, 2rem);
+            margin-bottom: clamp(1rem, 3vw, 1.5rem);
+            border-left: 4px solid var(--secondary-blue);
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.15),
+                0 4px 10px rgba(30, 64, 175, 0.1);
+        }
+
+        .section-title {
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
+            font-weight: 600;
+            color: var(--secondary-blue);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-shadow: 
+                0 4px 8px rgba(0, 0, 0, 0.3),
+                0 2px 4px rgba(59, 130, 246, 0.2),
+                0 1px 2px rgba(0, 0, 0, 0.1);
+            flex-wrap: wrap;
+        }
+
+        .section-icon {
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+            flex-shrink: 0;
+        }
+
+        .section-content {
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        /* Enhanced highlight box with better mobile layout */
+        .highlight-box {
+            background: linear-gradient(135deg, var(--light-blue), var(--secondary-blue));
+            color: white;
+            padding: clamp(1.25rem, 3vw, 1.5rem);
+            border-radius: 12px;
+            margin: clamp(1rem, 3vw, 1.5rem) 0;
+            text-align: center;
+            box-shadow: 
+                0 10px 30px rgba(59, 130, 246, 0.3),
+                0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .highlight-box h3 {
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-box p {
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            opacity: 0.9;
+        }
+
+        /* Enhanced list styling with better mobile layout */
+        .simple-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .simple-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+            color: var(--text-primary);
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            line-height: 1.5;
+        }
+
+        .simple-list li:before {
+            content: "✓";
+            color: var(--secondary-blue);
+            font-weight: bold;
+            margin-left: 0.75rem;
+            font-size: 1.1em;
+        }
+
+        /* Enhanced contact info with better mobile layout */
+        .contact-info {
+            background: rgba(59, 130, 246, 0.1);
+            padding: clamp(1.25rem, 3vw, 1.5rem);
+            border-radius: 12px;
+            margin-top: 1rem;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.1);
+        }
+
+        .contact-info p {
+            margin-bottom: 0.75rem;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            line-height: 1.5;
+        }
+
+        .contact-info p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Enhanced back button with better mobile support */
+        .back-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--secondary-blue), var(--light-blue));
+            color: white;
+            padding: clamp(0.8rem, 3vw, 1rem) clamp(1rem, 4vw, 1.5rem);
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            /* Better touch target */
+            min-height: clamp(40px, 8vw, 50px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-align: center;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+        }
+
+        /* Comprehensive mobile responsive design */
+        @media (min-width: 768px) {
+            :root {
+                --container-padding: 2rem;
+            }
+            
+            .content-card {
+                padding: 3rem;
+            }
+            
+            .section {
+                padding: 2rem;
+            }
+            
+            .header {
+                flex-wrap: nowrap;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .container {
+                padding: 0.75rem;
+            }
+            
+            .header {
+                padding: 1rem;
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo-section {
+                justify-content: center;
+                min-width: auto;
+            }
+            
+            .content-card {
+                padding: 1.5rem;
+                border-radius: 15px;
+            }
+            
+            .section {
+                padding: 1.25rem;
+                margin-bottom: 1rem;
+            }
+            
+            .section-title {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .highlight-box {
+                padding: 1.25rem;
+                margin: 1rem 0;
+            }
+            
+            .contact-info {
+                padding: 1.25rem;
+            }
+            
+            .back-button {
+                width: 100%;
+                margin-top: 1.5rem;
+            }
+        }
+
+        /* Better responsive header */
+        @media (max-width: 600px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo-section {
+                justify-content: center;
+            }
+        }
+
+        /* Small mobile devices */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0.5rem;
+            }
+
+            .content-card {
+                padding: 1rem;
+                border-radius: 12px;
+            }
+
+            .section {
+                padding: 1rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .section-title {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .contact-info {
+                padding: 1rem;
+            }
+        }
+
+        /* Tablet optimization */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .container {
+                max-width: 900px;
+            }
+        }
+
+        /* Ultra-wide screens */
+        @media (min-width: 1400px) {
+            .container {
+                max-width: 1300px;
+            }
+        }
+
+        /* Enhanced accessibility and touch targets */
+        @media (hover: none) and (pointer: coarse) {
+            .theme-toggle,
+            .back-button {
+                min-height: clamp(40px, 8vw, 50px);
+                min-width: clamp(40px, 8vw, 50px);
+            }
+        }
+
+        /* Reduced motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .section,
+            .content-card,
+            .header {
+                border-width: 2px;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .header .theme-toggle {
+                display: none;
+            }
+            
+            body {
+                background: white;
+                color: black;
+            }
+            
+            .content-card,
+            .section {
+                background: white;
+                box-shadow: none;
+                border: 1px solid #ccc;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo-section">
+                <img src="logo1.png" alt="عقاري شوب" class="logo">
+                <div class="logo-text">عقاري شوب</div>
+            </div>
+            <button class="theme-toggle" onclick="toggleTheme()" title="تبديل الوضع المظلم" aria-label="تبديل الوضع المظلم">
+                <i class="fas fa-moon" id="themeIcon"></i>
+            </button>
+        </header>
+
+        <div class="content-card">
+            <h1 class="page-title">سياسة الخصوصية</h1>
+            
+            <div class="highlight-box">
+                <h3>نحن نحترم خصوصيتك</h3>
+                <p>بيانات بسيطة وواضحة حول كيفية حماية معلوماتك</p>
+            </div>
+
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">📝</span>
+                    ما المعلومات التي نجمعها؟
+                </div>
+                <div class="section-content">
+                    <ul class="simple-list">
+                        <li>اسمك وبريدك الإلكتروني</li>
+                        <li>رقم هاتفك للتواصل</li>
+                        <li>تفاصيل العقارات التي تنشرها</li>
+                        <li>معلومات تقنية بسيطة لتحسين الموقع</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">🎯</span>
+                    لماذا نجمع هذه المعلومات؟
+                </div>
+                <div class="section-content">
+                    <ul class="simple-list">
+                        <li>لتقديم خدمة أفضل لك</li>
+                        <li>للتواصل معك بخصوص العقارات</li>
+                        <li>لإرسال إشعارات مهمة</li>
+                        <li>لحماية الموقع من الاستخدام الخاطئ</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">🔒</span>
+                    كيف نحمي بياناتك؟
+                </div>
+                <div class="section-content">
+                    <ul class="simple-list">
+                        <li>تشفير قوي لجميع البيانات</li>
+                        <li>خوادم آمنة ومحمية</li>
+                        <li>وصول محدود للموظفين المخولين فقط</li>
+                        <li>مراجعات أمنية دورية</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">🚫</span>
+                    ما لا نفعله ببياناتك
+                </div>
+                <div class="section-content">
+                    <ul class="simple-list">
+                        <li>لا نبيع معلوماتك لأي شخص</li>
+                        <li>لا نشاركها مع شركات إعلانية</li>
+                        <li>لا نرسل رسائل مزعجة</li>
+                        <li>لا نستخدمها خارج نطاق الخدمة</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">⚖️</span>
+                    حقوقك
+                </div>
+                <div class="section-content">
+                    <ul class="simple-list">
+                        <li>طلب نسخة من بياناتك</li>
+                        <li>تصحيح أي معلومات خاطئة</li>
+                        <li>حذف حسابك وبياناتك</li>
+                        <li>نقل بياناتك لخدمة أخرى</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">📞</span>
+                    تواصل معنا
+                </div>
+                <div class="section-content">
+                    <p>لأي استفسار حول خصوصيتك أو لممارسة حقوقك:</p>
+                    <div class="contact-info">
+                        <p><strong>البريد الإلكتروني:</strong> privacy@aqarishop.com</p>
+                        <p><strong>الهاتف:</strong> +213 XXX XXX XXX</p>
+                        <p><strong>أو استخدم الدردشة المباشرة في الموقع</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <a href="index.html" class="back-button" aria-label="العودة للصفحة الرئيسية">
+                <i class="fas fa-arrow-right"></i>
+                العودة للصفحة الرئيسية
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('themeIcon');
+            
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                themeIcon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Load saved theme
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            const themeIcon = document.getElementById('themeIcon');
+            
+            if (savedTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fas fa-sun';
+            }
+
+            const sections = document.querySelectorAll('.section');
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'slideUp 0.6s ease forwards';
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Add slideUp animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideUp {
+                    from { 
+                        transform: translateY(20px); 
+                        opacity: 0; 
+                    }
+                    to { 
+                        transform: translateY(0); 
+                        opacity: 1; 
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    // Allow easy navigation back
+                    window.history.back();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
