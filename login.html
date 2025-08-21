@@ -65,12 +65,13 @@
             backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
             border-radius: 20px;
-            padding: 2rem;
+            padding: clamp(1.5rem, 4vw, 3rem);
             width: 100%;
-            max-width: clamp(300px, 90vw, 450px);
+            max-width: clamp(320px, 95vw, 500px);
             box-shadow: var(--glass-shadow);
             /* Better mobile positioning */
             margin: clamp(0.5rem, 2vw, 1rem) auto;
+            position: relative;
         }
 
         /* Enhanced theme toggle for mobile */
@@ -104,9 +105,9 @@
 
         .logo {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             /* Better spacing for mobile */
-            margin-top: 2rem;
+            margin-top: 1rem;
         }
 
         .logo img {
@@ -131,7 +132,7 @@
 
         /* Enhanced form styling for better mobile experience */
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .form-group label {
@@ -214,7 +215,7 @@
 
         .links {
             text-align: center;
-            margin-top: 2rem;
+            margin-top: 1.5rem;
         }
 
         .links a {
@@ -301,7 +302,7 @@
             }
         }
 
-        /* Improved mobile layout */
+        /* Small mobile devices */
         @media (max-width: 480px) {
             .login-container {
                 padding: 1rem;
@@ -309,80 +310,81 @@
             }
 
             .logo {
-                margin-bottom: 1.5rem;
+                margin-bottom: 1rem;
                 margin-top: 0.5rem;
             }
 
             .form-group {
-                margin-bottom: 1rem;
+                margin-bottom: 0.8rem;
             }
 
-            .links a {
-                display: block;
-                margin: 0.75rem 0;
-                padding: 0.75rem;
+            .links {
+                margin-top: 1rem;
             }
         }
 
         /* Tablet optimization */
         @media (min-width: 769px) and (max-width: 1024px) {
             .login-container {
-                max-width: 500px;
-                padding: 2.5rem;
+                max-width: 550px;
+                padding: 3rem;
             }
         }
 
         /* Landscape mobile */
-        @media (max-height: 500px) and (orientation: landscape) {
+        @media (max-height: 600px) and (orientation: landscape) {
             body {
-                align-items: flex-start;
-                padding-top: 1rem;
+                padding-top: 0.5rem;
             }
 
             .login-container {
-                margin: 0.5rem auto;
+                margin: 0.25rem auto;
             }
 
             .logo {
-                margin-bottom: 1rem;
-                margin-top: 0.5rem;
+                margin-bottom: 0.5rem;
+                margin-top: 0.25rem;
             }
 
             .logo img {
-                width: 60px;
-                height: 60px;
+                width: 50px;
+                height: 50px;
+            }
+
+            .form-group {
+                margin-bottom: 0.5rem;
             }
         }
 
-        /* Enhanced accessibility and touch targets */
-        @media (hover: none) and (pointer: coarse) {
-            .btn,
-            .form-group input,
-            .form-group select,
-            .theme-toggle,
-            .back-home {
-                min-height: 44px;
+        /* Ultra-wide screens */
+        @media (min-width: 1400px) {
+            .login-container {
+                max-width: 600px;
             }
         }
 
-        /* Reduced motion for accessibility */
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
+        /* Error message styling */
+        .error-message {
+            display: none;
+            color: #ef4444;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            background: rgba(239, 68, 68, 0.1);
+            border-radius: 5px;
+            border-left: 3px solid #ef4444;
         }
 
-        /* High contrast mode support */
-        @media (prefers-contrast: high) {
-            .form-group input,
-            .form-group select,
-            .btn {
-                border-width: 3px;
-            }
+        /* Success message styling */
+        .success-message {
+            display: none;
+            color: #10b981;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 5px;
+            border-left: 3px solid #10b981;
         }
     </style>
 </head>
@@ -413,19 +415,19 @@
                     <option value="buyer">مشتري</option>
                     <option value="guest">ضيف</option>
                 </select>
-                <div id="userType-error" class="error-message" style="display: none; color: #ef4444; font-size: 0.9rem; margin-top: 0.5rem;"></div>
+                <div id="userType-error" class="error-message"></div>
             </div>
 
             <div class="form-group">
                 <label for="email">البريد الإلكتروني:</label>
                 <input type="email" id="email" placeholder="أدخل بريدك الإلكتروني" required aria-describedby="email-error" autocomplete="email">
-                <div id="email-error" class="error-message" style="display: none; color: #ef4444; font-size: 0.9rem; margin-top: 0.5rem;"></div>
+                <div id="email-error" class="error-message"></div>
             </div>
 
             <div class="form-group">
                 <label for="password">كلمة المرور:</label>
                 <input type="password" id="password" placeholder="أدخل كلمة المرور" required aria-describedby="password-error" autocomplete="current-password">
-                <div id="password-error" class="error-message" style="display: none; color: #ef4444; font-size: 0.9rem; margin-top: 0.5rem;"></div>
+                <div id="password-error" class="error-message"></div>
             </div>
 
             <button type="submit" class="btn" id="loginBtn">
